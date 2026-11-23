@@ -7,19 +7,19 @@ $payload = $argv[2] ?? throw new InvalidArgumentException('Expected race payload
 require $autoload;
 require __DIR__.'/StorageTestCase.php';
 
-use Youmad\Endurance\Foundation\Clock\FrozenClock;
-use Youmad\Endurance\Foundation\ValueObject\Instant;
-use Youmad\Endurance\Workout\Application\UseCase\PublishWorkout;
-use Youmad\Endurance\Workout\Duration\OpenDuration;
-use Youmad\Endurance\Workout\Sequence;
-use Youmad\Endurance\Workout\Step;
-use Youmad\Endurance\Workout\ValueObject\ExpectedWorkoutState;
-use Youmad\Endurance\Workout\ValueObject\WorkoutId;
-use Youmad\Endurance\Workout\ValueObject\WorkoutRevisionId;
-use Youmad\Endurance\Workout\ValueObject\WorkoutVersion;
-use Youmad\Endurance\Workout\Workout;
-use Youmad\Endurance\WorkoutPostgresql\DoctrineDbalWorkoutRepository;
-use Youmad\Endurance\WorkoutPostgresql\Tests\Support\StorageTestCase;
+use Endurance\Foundation\Clock\FrozenClock;
+use Endurance\Foundation\ValueObject\Instant;
+use Endurance\Workout\Application\UseCase\PublishWorkout;
+use Endurance\Workout\Duration\OpenDuration;
+use Endurance\Workout\Sequence;
+use Endurance\Workout\Step;
+use Endurance\Workout\ValueObject\ExpectedWorkoutState;
+use Endurance\Workout\ValueObject\WorkoutId;
+use Endurance\Workout\ValueObject\WorkoutRevisionId;
+use Endurance\Workout\ValueObject\WorkoutVersion;
+use Endurance\Workout\Workout;
+use Endurance\WorkoutPostgresql\DoctrineDbalWorkoutRepository;
+use Endurance\WorkoutPostgresql\Tests\Support\StorageTestCase;
 
 $data = json_decode(file_get_contents($payload), true, flags: JSON_THROW_ON_ERROR);
 $db = StorageTestCase::connect();

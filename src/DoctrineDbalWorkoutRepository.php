@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Youmad\Endurance\WorkoutPostgresql;
+namespace Endurance\WorkoutPostgresql;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
-use Youmad\Endurance\Foundation\ValueObject\Instant;
-use Youmad\Endurance\Workout\Application\Port\WorkoutRepository;
-use Youmad\Endurance\Workout\Entity\WorkoutPlan;
-use Youmad\Endurance\Workout\Entity\WorkoutRevision;
-use Youmad\Endurance\Workout\Exception\WorkoutAlreadyExists;
-use Youmad\Endurance\Workout\Exception\WorkoutNotFound;
-use Youmad\Endurance\Workout\Exception\WorkoutRevisionAlreadyExists;
-use Youmad\Endurance\Workout\Exception\WorkoutRevisionNotFound;
-use Youmad\Endurance\Workout\ValueObject\ExpectedWorkoutState;
-use Youmad\Endurance\Workout\ValueObject\WorkoutId;
-use Youmad\Endurance\Workout\ValueObject\WorkoutRevisionId;
-use Youmad\Endurance\Workout\ValueObject\WorkoutRevisionReference;
-use Youmad\Endurance\Workout\ValueObject\WorkoutVersion;
-use Youmad\Endurance\WorkoutPostgresql\Internal\PrescriptionCodec;
+use Endurance\Foundation\ValueObject\Instant;
+use Endurance\Workout\Application\Port\WorkoutRepository;
+use Endurance\Workout\Entity\WorkoutPlan;
+use Endurance\Workout\Entity\WorkoutRevision;
+use Endurance\Workout\Exception\WorkoutAlreadyExists;
+use Endurance\Workout\Exception\WorkoutNotFound;
+use Endurance\Workout\Exception\WorkoutRevisionAlreadyExists;
+use Endurance\Workout\Exception\WorkoutRevisionNotFound;
+use Endurance\Workout\ValueObject\ExpectedWorkoutState;
+use Endurance\Workout\ValueObject\WorkoutId;
+use Endurance\Workout\ValueObject\WorkoutRevisionId;
+use Endurance\Workout\ValueObject\WorkoutRevisionReference;
+use Endurance\Workout\ValueObject\WorkoutVersion;
+use Endurance\WorkoutPostgresql\Internal\PrescriptionCodec;
 
 /** Unscoped storage; callers must authorize every operation. */
 final readonly class DoctrineDbalWorkoutRepository implements WorkoutRepository

@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Youmad\Endurance\WorkoutPostgresql\Tests\Unit;
+namespace Endurance\WorkoutPostgresql\Tests\Unit;
 
+use Endurance\Workout\Duration\DistanceDuration;
+use Endurance\Workout\Duration\OpenDuration;
+use Endurance\Workout\Duration\TimeDuration;
+use Endurance\Workout\Repeat;
+use Endurance\Workout\Sequence;
+use Endurance\Workout\Step;
+use Endurance\Workout\StepPurpose;
+use Endurance\Workout\Target\TargetMetric;
+use Endurance\Workout\Target\TargetRange;
+use Endurance\Workout\Workout;
+use Endurance\WorkoutPostgresql\Internal\PrescriptionCodec;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use Youmad\Endurance\Workout\Duration\DistanceDuration;
-use Youmad\Endurance\Workout\Duration\OpenDuration;
-use Youmad\Endurance\Workout\Duration\TimeDuration;
-use Youmad\Endurance\Workout\Repeat;
-use Youmad\Endurance\Workout\Sequence;
-use Youmad\Endurance\Workout\Step;
-use Youmad\Endurance\Workout\StepPurpose;
-use Youmad\Endurance\Workout\Target\TargetMetric;
-use Youmad\Endurance\Workout\Target\TargetRange;
-use Youmad\Endurance\Workout\Workout;
-use Youmad\Endurance\WorkoutPostgresql\Internal\PrescriptionCodec;
 
 final class PrescriptionCodecTest extends TestCase
 {

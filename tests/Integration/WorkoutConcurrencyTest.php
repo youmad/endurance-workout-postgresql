@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Youmad\Endurance\WorkoutPostgresql\Tests\Integration;
+namespace Endurance\WorkoutPostgresql\Tests\Integration;
 
-use Youmad\Endurance\Workout\Exception\WorkoutAlreadyExists;
-use Youmad\Endurance\Workout\Exception\WorkoutConflict;
-use Youmad\Endurance\Workout\Exception\WorkoutRevisionAlreadyExists;
-use Youmad\Endurance\Workout\ValueObject\WorkoutId;
-use Youmad\Endurance\Workout\ValueObject\WorkoutRevisionId;
-use Youmad\Endurance\WorkoutPostgresql\Tests\Support\StorageTestCase;
+use Endurance\Workout\Exception\WorkoutAlreadyExists;
+use Endurance\Workout\Exception\WorkoutConflict;
+use Endurance\Workout\Exception\WorkoutRevisionAlreadyExists;
+use Endurance\Workout\ValueObject\WorkoutId;
+use Endurance\Workout\ValueObject\WorkoutRevisionId;
+use Endurance\WorkoutPostgresql\Tests\Support\StorageTestCase;
 
 final class WorkoutConcurrencyTest extends StorageTestCase
 {

@@ -4,18 +4,18 @@ Doctrine DBAL storage for immutable Workout plans/revisions. Requires PHP 8.5,
 PostgreSQL 18, PDO pgsql and Doctrine DBAL ^4.4.
 
 ```bash
-composer require youmad/endurance-workout-postgresql
+composer require endurance/workout-postgresql
 ```
 
 Register `migrations/` under namespace
-`Youmad\Endurance\WorkoutPostgresql\Migrations` in your migration runner and apply
+`Endurance\WorkoutPostgresql\Migrations` in your migration runner and apply
 it before use. No automatic schema creation; retained publication history prevents
 destructive rollback.
 
 ```php
-use Youmad\Endurance\Foundation\Clock\SystemClock;
-use Youmad\Endurance\Workout\Application\UseCase\PublishWorkout;
-use Youmad\Endurance\WorkoutPostgresql\DoctrineDbalWorkoutRepository;
+use Endurance\Foundation\Clock\SystemClock;
+use Endurance\Workout\Application\UseCase\PublishWorkout;
+use Endurance\WorkoutPostgresql\DoctrineDbalWorkoutRepository;
 
 $workouts = new DoctrineDbalWorkoutRepository($connection);
 $publisher = new PublishWorkout($workouts, new SystemClock());

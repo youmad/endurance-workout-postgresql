@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Youmad\Endurance\WorkoutPostgresql\Tests\Integration;
+namespace Endurance\WorkoutPostgresql\Tests\Integration;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception\DriverException;
+use Endurance\Foundation\Clock\FrozenClock;
+use Endurance\Workout\Application\UseCase\PublishWorkout;
+use Endurance\Workout\Exception\WorkoutAlreadyExists;
+use Endurance\Workout\Exception\WorkoutConflict;
+use Endurance\Workout\Exception\WorkoutNotFound;
+use Endurance\Workout\Exception\WorkoutRevisionAlreadyExists;
+use Endurance\Workout\Exception\WorkoutRevisionNotFound;
+use Endurance\Workout\ValueObject\ExpectedWorkoutState;
+use Endurance\Workout\ValueObject\WorkoutId;
+use Endurance\Workout\ValueObject\WorkoutRevisionId;
+use Endurance\Workout\ValueObject\WorkoutRevisionReference;
+use Endurance\Workout\ValueObject\WorkoutVersion;
+use Endurance\WorkoutPostgresql\DoctrineDbalWorkoutRepository;
+use Endurance\WorkoutPostgresql\Tests\Support\StorageTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
-use Youmad\Endurance\Foundation\Clock\FrozenClock;
-use Youmad\Endurance\Workout\Application\UseCase\PublishWorkout;
-use Youmad\Endurance\Workout\Exception\WorkoutAlreadyExists;
-use Youmad\Endurance\Workout\Exception\WorkoutConflict;
-use Youmad\Endurance\Workout\Exception\WorkoutNotFound;
-use Youmad\Endurance\Workout\Exception\WorkoutRevisionAlreadyExists;
-use Youmad\Endurance\Workout\Exception\WorkoutRevisionNotFound;
-use Youmad\Endurance\Workout\ValueObject\ExpectedWorkoutState;
-use Youmad\Endurance\Workout\ValueObject\WorkoutId;
-use Youmad\Endurance\Workout\ValueObject\WorkoutRevisionId;
-use Youmad\Endurance\Workout\ValueObject\WorkoutRevisionReference;
-use Youmad\Endurance\Workout\ValueObject\WorkoutVersion;
-use Youmad\Endurance\WorkoutPostgresql\DoctrineDbalWorkoutRepository;
-use Youmad\Endurance\WorkoutPostgresql\Tests\Support\StorageTestCase;
 
 final class WorkoutStorageTest extends StorageTestCase
 {

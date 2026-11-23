@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Youmad\Endurance\WorkoutPostgresql;
+namespace Endurance\WorkoutPostgresql;
 
 final class WorkoutReadProjection
 {

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Youmad\Endurance\WorkoutPostgresql\Internal;
+namespace Endurance\WorkoutPostgresql\Internal;
 
-use Youmad\Endurance\Workout\Duration\DistanceDuration;
-use Youmad\Endurance\Workout\Duration\OpenDuration;
-use Youmad\Endurance\Workout\Duration\TimeDuration;
-use Youmad\Endurance\Workout\Repeat;
-use Youmad\Endurance\Workout\Sequence;
-use Youmad\Endurance\Workout\Step;
-use Youmad\Endurance\Workout\StepPurpose;
-use Youmad\Endurance\Workout\Target\FreeTarget;
-use Youmad\Endurance\Workout\Target\TargetMetric;
-use Youmad\Endurance\Workout\Target\TargetRange;
-use Youmad\Endurance\Workout\Workout;
+use Endurance\Workout\Duration\DistanceDuration;
+use Endurance\Workout\Duration\OpenDuration;
+use Endurance\Workout\Duration\TimeDuration;
+use Endurance\Workout\Repeat;
+use Endurance\Workout\Sequence;
+use Endurance\Workout\Step;
+use Endurance\Workout\StepPurpose;
+use Endurance\Workout\Target\FreeTarget;
+use Endurance\Workout\Target\TargetMetric;
+use Endurance\Workout\Target\TargetRange;
+use Endurance\Workout\Workout;
 
 /** Versioned flat parent-index tree. No recursion or expansion; float bits are independent of JSON precision. @internal */
 final readonly class PrescriptionCodec

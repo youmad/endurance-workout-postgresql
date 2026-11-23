@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Youmad\Endurance\WorkoutPostgresql\Tests\Support;
+namespace Endurance\WorkoutPostgresql\Tests\Support;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
+use Endurance\Foundation\Clock\FrozenClock;
+use Endurance\Foundation\ValueObject\Instant;
+use Endurance\Workout\Application\UseCase\PublishWorkout;
+use Endurance\Workout\Duration\OpenDuration;
+use Endurance\Workout\Duration\TimeDuration;
+use Endurance\Workout\Entity\WorkoutPlan;
+use Endurance\Workout\Repeat;
+use Endurance\Workout\Sequence;
+use Endurance\Workout\Step;
+use Endurance\Workout\ValueObject\WorkoutId;
+use Endurance\Workout\ValueObject\WorkoutRevisionId;
+use Endurance\Workout\Workout;
+use Endurance\WorkoutPostgresql\DoctrineDbalWorkoutRepository;
 use PHPUnit\Framework\TestCase;
-use Youmad\Endurance\Foundation\Clock\FrozenClock;
-use Youmad\Endurance\Foundation\ValueObject\Instant;
-use Youmad\Endurance\Workout\Application\UseCase\PublishWorkout;
-use Youmad\Endurance\Workout\Duration\OpenDuration;
-use Youmad\Endurance\Workout\Duration\TimeDuration;
-use Youmad\Endurance\Workout\Entity\WorkoutPlan;
-use Youmad\Endurance\Workout\Repeat;
-use Youmad\Endurance\Workout\Sequence;
-use Youmad\Endurance\Workout\Step;
-use Youmad\Endurance\Workout\ValueObject\WorkoutId;
-use Youmad\Endurance\Workout\ValueObject\WorkoutRevisionId;
-use Youmad\Endurance\Workout\Workout;
-use Youmad\Endurance\WorkoutPostgresql\DoctrineDbalWorkoutRepository;
 
 abstract class StorageTestCase extends TestCase
 {
