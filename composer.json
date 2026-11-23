@@ -1,0 +1,38 @@
+{
+    "name": "youmad/endurance-workout-postgresql",
+    "description": "Atomic PostgreSQL publication and immutable Workout revision storage",
+    "type": "library",
+    "license": "MPL-2.0",
+    "require": {
+        "php": "^8.5",
+        "ext-pdo_pgsql": "*",
+        "doctrine/dbal": "^4.4",
+        "youmad/endurance-foundation": "^0.1.2",
+        "youmad/endurance-workout": "^0.1.0"
+    },
+    "require-dev": {
+        "doctrine/migrations": "^3.9",
+        "phpunit/phpunit": "^12.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Youmad\\Endurance\\WorkoutPostgresql\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Youmad\\Endurance\\WorkoutPostgresql\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test:unit": "phpunit --testsuite unit",
+        "test:integration": [
+            "@php vendor/bin/doctrine-migrations migrate --configuration=tests/migrations.php --db-configuration=tests/connection.php --no-interaction",
+            "phpunit --testsuite integration"
+        ],
+        "check": [
+            "@composer validate --strict",
+            "@test:unit"
+        ]
+    }
+}

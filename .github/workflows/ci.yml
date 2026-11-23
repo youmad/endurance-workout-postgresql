@@ -1,0 +1,57 @@
+name: Tests
+
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        dependencies: [lowest, latest]
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_DB: package_test
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 5432/tcp
+        options: >-
+          --health-cmd "pg_isready -U postgres -d package_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    env:
+      DATABASE_NAME: package_test
+      DATABASE_HOST: 127.0.0.1
+      DATABASE_USER: postgres
+
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        with:
+          php-version: '8.5'
+          extensions: dom, mbstring, xml, xmlreader, xmlwriter, pdo_pgsql
+          coverage: none
+          tools: composer:v2
+      - name: Set test database port
+        run: printf '%s\n' 'DATABASE_PORT=${{ job.services.postgres.ports['5432'] }}' >> "$GITHUB_ENV"
+      - run: composer validate --strict
+      - name: Resolve dependencies
+        env:
+          DEPENDENCIES: ${{ matrix.dependencies }}
+        run: |
+          if [ "$DEPENDENCIES" = lowest ]; then
+            composer update --prefer-lowest --prefer-stable --prefer-dist --no-interaction
+          else
+            composer update --prefer-dist --no-interaction
+          fi
+      - run: composer dump-autoload --optimize --strict-psr --strict-ambiguous
+      - run: composer check
+      - run: composer test:integration
+
+      - run: php .github/check-distribution.php
