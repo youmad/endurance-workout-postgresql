@@ -32,6 +32,17 @@ $revision = $workouts->getRevision($plan->reference());
 - Persistence retains exact float bits and repeat counts without expansion.
   The versioned storage encoding is private to this adapter.
 
+For bounded structural reads, select
+`WorkoutReadProjection::contentColumns('r', $limit, $after)` from
+`workout_revisions r`, adding your authorization and exact workout/revision filters
+to the same query. Map the row with `WorkoutReadProjection::contentPage($row,
+$limit, $after)`. Limits are 1–100; `after` is an exclusive, one-based structural
+ordinal (0 initially, at most 65534). The page retains its revision, publication
+time and unexpanded repeat counts; parents can precede the page. A row after the
+last node yields an empty page with its header. A missing row remains missing.
+The projection validates the header and selected nodes without transferring or
+hydrating the complete recipe. `getRevision()` validates and loads the full tree.
+
 Types in `Internal` and elements marked `@internal` are not public API.
 
 License: [MPL-2.0](LICENSE).
